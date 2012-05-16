@@ -1,0 +1,42 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<p:messages id="messages" showDetail="true" autoUpdate="true"/>
+
+<p:panelGrid columns="2">
+	<f:facet name="header">  
+        Login Basico  
+    </f:facet>
+
+	<h:outputText value="Login:" />
+	<p:inputText d="user" value="#{loginBean.usuario}" requiredMessage="O usuário é obrigartório!"/>
+	<h:outputText value="Senha:" />
+	<p:password id="password" value="#{loginBean.senha}" requiredMessage="A senha é obrigartório!"/>
+
+	<f:facet name="footer">
+		<p:commandButton value="Logar" action="#{loginBean.verificaLogin}"
+			icon="ui-icon-check" />
+	</f:facet>
+</p:panelGrid>
+<br/>
+<p:growl id="messagesConfirm" />
+<h:panelGrid columns="1" cellpadding="5">  
+        <h:outputText id="msg" value="#{buttonBean.text}"/>  
+          
+        <p:commandButton id="showDialogButton" value="Destroy the World" onclick="confirmation.show()" type="button"/>  
+    </h:panelGrid> 
+<p:confirmDialog id="confirmDialog" message="Are you sure about destroying the world?"  
+                header="Initiating destroy process" severity="alert" widgetVar="confirmation">  
+                  
+    <p:commandButton id="confirm" value="Yes Sure" update="messagesConfirm" oncomplete="confirmation.hide()"  
+                actionListener="#{buttonBean.destroyWorld}" />  
+    <p:commandButton id="decline" value="Not Yet" onclick="confirmation.hide()" type="button" />   
+              
+</p:confirmDialog> 
+
+<h:outputText value="Data:" />
+<p:inputMask mask="99/99/9999"></p:inputMask>
+
+</html>
