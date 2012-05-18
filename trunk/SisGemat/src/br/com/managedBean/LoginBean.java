@@ -55,7 +55,8 @@ public class LoginBean {
 		//session.getTransaction().commit();
 		
 		LoginDAO dao = new LoginDAO();   
-	    dao.retrieve("1");  
+	    dao.retrieve(1L);  
+	    dao.getLogin(usuario);
 		}catch(Exception e){
 			e.printStackTrace();
 		}
