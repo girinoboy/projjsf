@@ -4,11 +4,13 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.util.Date;
 
+import javax.persistence.EntityManager;
 import javax.swing.JOptionPane;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.cfg.AnnotationConfiguration;
 import org.hibernate.cfg.Configuration;
 
 import br.com.tables.Event;
@@ -31,6 +33,16 @@ public class Conexao {
 		System.out.println(getClass().getResource(".").getPath());
 		conn = DriverManager.getConnection("jdbc:hsqldb:file:./data/contratos;shutdown=true", "sa", "");
 		return conn;
+	}
+	
+	public static Connection getConnection(){
+		
+		 SessionFactory sf = new Configuration().configure().buildSessionFactory();  
+	      Session s = sf.openSession();  
+	      Transaction tx = s.beginTransaction();
+	      
+	      EntityManager gete;
+		return null;  
 	}
 	
 	 private void createAndStoreEvent(String title, Date theDate) {
@@ -76,7 +88,7 @@ public class Conexao {
 		 Conexao a = new Conexao();
 		 
 		 try {
-			 
+			//conexão JDBC 
 			Connection b = a.conectar();
 			if(b != null){
 				System.out.println("conectado");
@@ -95,9 +107,21 @@ public class Conexao {
 			      s.save(a);  
 			      tx.commit();  
 			      s.close();  */
+				
+				//conexão Hibernate
+				System.out.println(1);
+				Configuration conf = new AnnotationConfiguration();  
+		        conf.configure();  
+		        SessionFactory factory = conf.buildSessionFactory();  
+		        Session session = factory.openSession(); 
+		        
+		        Session session2 = HibernateUtil.getSession();  
+	            session2.beginTransaction();  
+				
+				
 				a.createAndStoreEvent("titulo 1", new Date());
 				a.createMock();
-				b.commit();				
+				b.commit();
 				b.close();
 				System.exit(0);
 			}else{
