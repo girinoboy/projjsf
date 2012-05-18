@@ -13,6 +13,7 @@ import org.junit.Test;
 
 import br.com.cadastro.CadastroUsuarioAction;
 import br.com.config.Conexao;
+import br.com.managedBean.LoginBean;
 import br.com.tables.Usuario;
 
 public class SisGemat {
@@ -57,4 +58,17 @@ public class SisGemat {
 		
     	assertNotNull("Cadastro valido", cadastro.cadastrar());
 	}
+    
+    @Test
+    public void verificaLogin() throws Exception {
+    	
+    	LoginBean login = new LoginBean();
+    	Usuario usuario = new Usuario();
+    	usuario.setLogin("marcleonio");
+    	usuario.setSenha("123456");
+    	
+    	assertNotNull("Login valido", login.logar());
+    	
+    }
+    
 }
