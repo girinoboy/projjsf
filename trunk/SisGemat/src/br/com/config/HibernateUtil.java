@@ -1,16 +1,20 @@
 package br.com.config;
+import org.hibernate.HibernateException;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.AnnotationConfiguration;
 import org.hibernate.cfg.Configuration;
 
 import br.com.tables.Event;
 import br.com.tables.MockObject;
+import br.com.tables.Usuario;
 
+@SuppressWarnings("deprecation")
 public class HibernateUtil {
 
    // private static final SessionFactory sessionFactory = buildSessionFactory();
     
-    private static final SessionFactory sessionFactory;
+    private static SessionFactory sessionFactory;
 
     private static SessionFactory buildSessionFactory() {
         try {
@@ -23,7 +27,6 @@ public class HibernateUtil {
             throw new ExceptionInInitializerError(ex);
         }
     }
-    
     
     static
     {
@@ -48,8 +51,10 @@ public class HibernateUtil {
             // Add your mapped classes here:
             config.addAnnotatedClass(Event.class);
             config.addAnnotatedClass(MockObject.class);
+            config.addAnnotatedClass(Usuario.class);
  
             sessionFactory = config.buildSessionFactory();
+            
         }
         catch (Throwable ex)
         {
@@ -59,7 +64,14 @@ public class HibernateUtil {
     }
 
     public static SessionFactory getSessionFactory() {
+    	if(sessionFactory == null)// Create the SessionFactory from hibernate.cfg.xml
+    		sessionFactory = new AnnotationConfiguration().configure().buildSessionFactory();
         return sessionFactory;
+    }
+    
+    public static Session getSession()
+            throws HibernateException {
+        return sessionFactory.openSession();
     }
 
 }
