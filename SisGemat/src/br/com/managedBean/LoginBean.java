@@ -26,7 +26,7 @@ public class LoginBean {
 	private Usuario usuarioDTO;
 	
 	public LoginBean(){
-		
+		usuarioDTO = new Usuario();
 	}
 
 	public String verificaLogin() {
