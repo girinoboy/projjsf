@@ -66,8 +66,8 @@ public class SisGemat {
     	Usuario usuario = new Usuario();
     	usuario.setLogin("marcleonio");
     	usuario.setSenha("123456");
-    	
-    	assertNotNull("Login valido", login.logar());
+    	login.setUsuarioDTO(usuario);
+    	assertEquals("logar", login.logar());
     	
     }
     

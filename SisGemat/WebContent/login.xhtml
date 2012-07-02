@@ -11,13 +11,14 @@
     </f:facet>
 
 	<h:outputText value="Login:" />
-	<p:inputText d="user" value="#{loginBean.usuario}" requiredMessage="O usuário é obrigartório!"/>
+	<p:inputText id="user" value="#{loginBean.usuarioDTO.login}" requiredMessage="O usuário é obrigartório!"/>
 	<h:outputText value="Senha:" />
-	<p:password id="password" value="#{loginBean.senha}" requiredMessage="A senha é obrigartório!"/>
+	<p:password id="password" value="#{loginBean.usuarioDTO.senha}" requiredMessage="A senha é obrigartório!"/>
 
 	<f:facet name="footer">
 		<p:commandButton value="Logar" action="#{loginBean.logar}"
 			icon="ui-icon-check" />
+			<h:commandButton action="#{loginBean.logar}" value="Page1" />
 	</f:facet>
 </p:panelGrid>
 <br/>
