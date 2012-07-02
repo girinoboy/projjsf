@@ -54,7 +54,7 @@ public class SisGemat {
     	usuario.setAtivoInativo(true);
     	usuario.setDataNascimento(new Date());
     	usuario.setCpf("11111111111");
-		cadastro.setUsuario(usuario);
+		cadastro.setUsuarioDTO(usuario);
 		
     	assertNotNull("Cadastro valido", cadastro.cadastrar());
 	}
