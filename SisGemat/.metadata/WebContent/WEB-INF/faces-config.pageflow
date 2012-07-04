@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf13371121366400" configfile="/SisGemat/WebContent/WEB-INF/faces-config.xml">
-  <nodes xsi:type="pageflow:PFPage" name="index2.xhtml" comment="Login" id="pf134120244654318" referenceLink="//@navigationRule.0/@fromViewId|" outlinks="pf134120244654319" path="/index2.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="index2.xhtml" comment="Login" id="pf134120244654318" referenceLink="//@navigationRule.1/@navigationCase.0/@toViewId|" outlinks="pf134120244654319 pf13414305539872 pf13414306656324" inlinks="pf13414312423207" path="/index2.xhtml"/>
   <nodes xsi:type="pageflow:PFPage" name="logado.xhtml" id="pf134120244654320" referenceLink="//@navigationRule.0/@navigationCase.0/@toViewId|" inlinks="pf134120244654319" path="/logado.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="error.xhtml" id="pf13414305539873" referenceLink="//@navigationRule.0/@navigationCase.1/@toViewId|" inlinks="pf13414305539872" path="/error.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="cadastroUsuario.xhtml" id="pf13414306656325" referenceLink="//@navigationRule.1/@fromViewId|" outlinks="pf13414312423207" inlinks="pf13414306656324" path="/cadastroUsuario.xhtml"/>
   <links id="pf134120244654319" target="pf134120244654320" source="pf134120244654318" outcome="logar" fromaction="#{loginBean.logar}"/>
+  <links id="pf13414305539872" target="pf13414305539873" source="pf134120244654318" outcome="fail" fromaction="#{loginBean.logar}"/>
+  <links id="pf13414306656324" target="pf13414306656325" source="pf134120244654318" outcome="load.fwd" fromaction="#{cadastroUsuarioMB.load}"/>
+  <links id="pf13414312423207" target="pf134120244654318" source="pf13414306656325" outcome="cadastrar.fwd" fromaction="#{cadastroUsuarioMB.cadastrar}"/>
 </pageflow:Pageflow>

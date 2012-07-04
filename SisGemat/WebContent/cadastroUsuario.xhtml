@@ -5,14 +5,43 @@
 	xmlns:c="http://java.sun.com/jsp/jstl/core"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:ui="http://java.sun.com/jsf/facelets">
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
 	<title>GEMAT</title>
+	
+	<h:outputScript library="js"     name="jquery.js"  target="head"/>    
+    <h:outputScript library="jquery" name="jquery.maskMoney.js" target="head"/>
+    <h:outputScript library="jquery" name="jquery.meio.mask.js" target="head"/>  
+      
+        <link type="text/css" rel="stylesheet" href="dot-luv/skin.css" />  
+          
+          
+    <script type="text/javascript">  
+    
+    // call setMask function on the document.ready event
+    /*$(document).ready(function(){
+    	$('input[type="text"]').setMask();
+    });
+    $jQuery(function($) {
+    	$('input[type="text"]').setMask();
+    });
+    $j(function($) {
+    	$('input[type="text"]').setMask();
+    });
+    (function($){
+    	$(
+    			function(){
+    				$('input:text').setMask();
+    				}
+    			);
+    	})(jQuery);*/
+        </script>  
 </h:head>
 
 <h:body>
-	<ui:include src="cabecalho.xhtml" />
+	<ui:include src="/WEB-INF/templates/cabecalho.xhtml" />
 
 	<f:view>
 		<h:form>
@@ -20,21 +49,44 @@
 				<h:outputLabel for="nome">
 					<h:outputText value="Nome: " />
 				</h:outputLabel>
-				<h:inputText id="nome" required="true" maxlength="20" />
+				<p:inputText id="nome" value="#{cadastroUsuarioMB.usuarioDTO.nome}" required="true" maxlength="20" />
+			</p>
+			<p>
+				<h:outputLabel for="login">
+					<h:outputText value="Login:" />
+				</h:outputLabel>
+				<p:inputText id="login" value="#{cadastroUsuarioMB.usuarioDTO.login}" requiredMessage="O campo Login é obrigartório!" required="true"/>
+			</p>
+			<p>
+				<h:outputLabel for="password">
+					<h:outputText value="Senha:" />
+				</h:outputLabel>
+				<p:password id="password" value="#{cadastroUsuarioMB.usuarioDTO.senha}" requiredMessage="O campo Senha é obrigartório!" required="true"/>
 			</p>
 
 			<p>
 				<h:outputLabel for="cpf">
 					<h:outputText value="CPF: " />
 				</h:outputLabel>
-				<h:inputText id="cpf" required="true" maxlength="20" >
-					<f:convertNumber maxFractionDigits="0" groupingUsed="true" pattern="999.999.999/999-99"/>
-				</h:inputText>
+				
+				<p:inputMask id="cpf" value="#{cadastroUsuarioMB.usuarioDTO.cpf}" mask="999.999.999-99"></p:inputMask>
 			</p>
+			<p>
+				<h:outputLabel for="data">
+					<h:outputText value="Data de Nascimento:" />
+				</h:outputLabel>
+				<p:inputMask id="data2" value="#{cadastroUsuarioMB.usuarioDTO.dataNascimento}" mask="99/99/9999"></p:inputMask>
+				
+				<p:calendar id="data" value="#{cadastroUsuarioMB.usuarioDTO.dataNascimento}" pattern="MM/dd/yyyy" alt="date"> 
+					<f:convertNumber maxFractionDigits="0" groupingUsed="true" pattern="99/99/9999"/>
+				</p:calendar> 
+			</p>
+
+				<h:commandButton action="#{cadastroUsuarioMB.cadastrar}" value="Cadastrar" />
 		</h:form>
 
 	</f:view>
 
-	<ui:include src="rodape.xhtml" />
+	<ui:include src="/WEB-INF/templates/rodape.xhtml" />
 </h:body>
 </html>

@@ -1,8 +1,5 @@
 package br.com.managedBean;
 
-import static org.junit.Assert.assertNotNull;
-
-import java.util.Date;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
@@ -12,10 +9,8 @@ import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 
-import br.com.cadastro.CadastroUsuarioAction;
 import br.com.config.HibernateUtil;
-import br.com.dao.LoginDAO;
-import br.com.tables.Usuario;
+import br.com.tables.UsuarioDTO;
 
 @ManagedBean(name = "loginBean")
 @RequestScoped
@@ -23,10 +18,10 @@ public class LoginBean {
 
 	private String	usuario;
 	private String	senha;
-	private Usuario usuarioDTO;
+	private UsuarioDTO usuarioDTO;
 	
 	public LoginBean(){
-		usuarioDTO = new Usuario();
+		usuarioDTO = new UsuarioDTO();
 	}
 
 	public String verificaLogin() {
@@ -68,12 +63,12 @@ public class LoginBean {
 		
     	cadastro.cadastrar();*/
 		
-        Criteria b = session.createCriteria(Usuario.class);
+        Criteria b = session.createCriteria(UsuarioDTO.class);
         b.add( Restrictions.eq( "login",  usuarioDTO.getLogin()) );
         b.add( Restrictions.eq( "senha",  usuarioDTO.getSenha()) );
-        List<Usuario> objetos = b.list(); 
+        List<UsuarioDTO> objetos = b.list(); 
         if(objetos.size()>0){
-        	Usuario u = objetos.get(0);
+        	UsuarioDTO u = objetos.get(0);
         	System.out.println(u.getLogin());
         }else{
         	throw new Exception();
@@ -104,14 +99,14 @@ public class LoginBean {
 		this.senha = senha;
 	}
 
-	public Usuario getUsuarioDTO() {
+	public UsuarioDTO getUsuarioDTO() {
 		if(usuarioDTO == null){
-			usuarioDTO = new Usuario();
+			usuarioDTO = new UsuarioDTO();
 		}
 		return usuarioDTO;
 	}
 
-	public void setUsuarioDTO(Usuario usuarioDTO) {
+	public void setUsuarioDTO(UsuarioDTO usuarioDTO) {
 		this.usuarioDTO = usuarioDTO;
 	}
 

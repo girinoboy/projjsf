@@ -69,6 +69,16 @@
 			<from-outcome>logar</from-outcome>
 			<to-view-id>/logado.xhtml</to-view-id>
 		</navigation-case>
+		<navigation-case>
+			<from-action>#{loginBean.logar}</from-action>
+			<from-outcome>fail</from-outcome>
+			<to-view-id>/error.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-action>#{cadastroUsuarioMB.load}</from-action>
+			<from-outcome>load.fwd</from-outcome>
+			<to-view-id>/cadastroUsuario.xhtml</to-view-id>
+		</navigation-case>
 	</navigation-rule>
 <!-- 	
 	<navigation-rule>
@@ -78,4 +88,16 @@
 		</navigation-case>
 	</navigation-rule>
   -->	
+  <navigation-rule>
+  	<description>Cadastro</description>
+		<from-view-id>/cadastroUsuario.xhtml</from-view-id>
+		<navigation-case>
+			<from-action>#{cadastroUsuarioMB.cadastrar}</from-action>
+			<from-outcome>cadastrar.fwd</from-outcome>
+			<to-view-id>/index2.xhtml</to-view-id>
+		</navigation-case>
+		
+		
+	</navigation-rule>
+ 
 </faces-config>

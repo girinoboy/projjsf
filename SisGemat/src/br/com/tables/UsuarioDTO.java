@@ -12,9 +12,10 @@ import javax.persistence.Table;
 @ManagedBean(name = "Usuario")
 @Entity
 @Table(name = "Usuario")
-public class Usuario {
+public class UsuarioDTO {
 
 	private Long id;
+	private String nome;
 	private String login;
 	private String senha;
 	private String sexo;
@@ -30,7 +31,7 @@ public class Usuario {
 	private String observacao;
 	
 
-	public Usuario() {}
+	public UsuarioDTO() {}
 
 	@Id
 	@GeneratedValue
@@ -49,6 +50,14 @@ public class Usuario {
 
 	public void setLogin(String login) {
 		this.login = login;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
 	public String getSenha() {

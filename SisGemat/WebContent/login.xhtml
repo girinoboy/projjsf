@@ -21,7 +21,7 @@
 		<p:commandButton value="Logar" action="#{loginBean.logar}"
 			icon="ui-icon-check" />
 			<h:commandButton action="#{loginBean.logar}" value="Logar" />
-			<h:commandButton action="#{cadastroUsuarioAction.cadastrar}" value="Cadastrar" />
+			<h:commandButton action="#{cadastroUsuarioMB.load}" value="Cadastrar" />
 	</f:facet>
 	
 </p:panelGrid>
@@ -41,7 +41,7 @@
               
 </p:confirmDialog> 
 
-<h:outputText value="Data:" />
-<p:inputMask mask="99/99/9999"></p:inputMask>
+
+
 
 </html>
