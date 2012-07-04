@@ -1,24 +1,21 @@
-package br.com.cadastro;
+package br.com.managedBean;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.util.Date;
 
 import javax.faces.bean.ManagedBean;
 
 import org.hibernate.Session;
 
-import br.com.config.Conexao;
 import br.com.config.HibernateUtil;
-import br.com.tables.Usuario;
+import br.com.tables.UsuarioDTO;
 
-@ManagedBean(name = "cadastroUsuarioAction")
-public class CadastroUsuarioAction {
+@ManagedBean(name = "cadastroUsuarioMB")
+public class CadastroUsuarioMB {
 
-	private Usuario usuarioDTO;
+	private UsuarioDTO usuarioDTO;
 	
-	public CadastroUsuarioAction(){
-		usuarioDTO = new Usuario();
+	public CadastroUsuarioMB(){
+		usuarioDTO = new UsuarioDTO();
 	}
 
 	public String load(){
@@ -48,14 +45,14 @@ public class CadastroUsuarioAction {
 		return "cadastrar.fwd";
 	}
 
-	public Usuario getUsuarioDTO() {
+	public UsuarioDTO getUsuarioDTO() {
 		if(usuarioDTO == null){
-			usuarioDTO = new Usuario();
+			usuarioDTO = new UsuarioDTO();
 		}
 		return usuarioDTO;
 	}
 
-	public void setUsuarioDTO(Usuario usuarioDTO) {
+	public void setUsuarioDTO(UsuarioDTO usuarioDTO) {
 		this.usuarioDTO = usuarioDTO;
 	}
 

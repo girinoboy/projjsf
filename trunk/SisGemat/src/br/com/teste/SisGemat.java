@@ -11,10 +11,10 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import br.com.cadastro.CadastroUsuarioAction;
 import br.com.config.Conexao;
+import br.com.managedBean.CadastroUsuarioMB;
 import br.com.managedBean.LoginBean;
-import br.com.tables.Usuario;
+import br.com.tables.UsuarioDTO;
 
 public class SisGemat {
 	
@@ -46,9 +46,9 @@ public class SisGemat {
     
     @Test
     public void createUser() throws Exception {
-    	CadastroUsuarioAction cadastro = new CadastroUsuarioAction();
+    	CadastroUsuarioMB cadastro = new CadastroUsuarioMB();
     	
-    	Usuario usuario = new Usuario();
+    	UsuarioDTO usuario = new UsuarioDTO();
     	usuario.setLogin("marcleonio");
     	usuario.setSenha("123456");
     	usuario.setAtivoInativo(true);
@@ -63,7 +63,7 @@ public class SisGemat {
     public void verificaLogin() throws Exception {
     	
     	LoginBean login = new LoginBean();
-    	Usuario usuario = new Usuario();
+    	UsuarioDTO usuario = new UsuarioDTO();
     	usuario.setLogin("marcleonio");
     	usuario.setSenha("123456");
     	login.setUsuarioDTO(usuario);
