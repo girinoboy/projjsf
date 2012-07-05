@@ -26,11 +26,11 @@
         <converter-class>org.primefaces.examples.view.ColorPickerConverter</converter-class>
     </converter>
 	
-	<managed-bean>
-        <managed-bean-name>buttonBean</managed-bean-name>
-        <managed-bean-class>org.primefaces.examples.view.ButtonBean</managed-bean-class>
-        <managed-bean-scope>request</managed-bean-scope>
-    </managed-bean>
+<!-- 	<managed-bean> -->
+<!--         <managed-bean-name>buttonBean</managed-bean-name> -->
+<!--         <managed-bean-class>org.primefaces.examples.view.ButtonBean</managed-bean-class> -->
+<!--         <managed-bean-scope>request</managed-bean-scope> -->
+<!--     </managed-bean> -->
 	<managed-bean>
         <managed-bean-name>guestPreferences</managed-bean-name>
         <managed-bean-class>org.primefaces.examples.view.GuestPreferences</managed-bean-class>
@@ -63,7 +63,7 @@
 			<to-view-id>/ajudaOnline.xhtml</to-view-id>
 		</navigation-case>-->
 		<description>Login</description>
-		<from-view-id>/index2.xhtml</from-view-id>
+		<from-view-id>/index.xhtml</from-view-id>
 		<navigation-case>
 			<from-action>#{loginBean.logar}</from-action>
 			<from-outcome>logar</from-outcome>
@@ -79,6 +79,12 @@
 			<from-outcome>load.fwd</from-outcome>
 			<to-view-id>/cadastroUsuario.xhtml</to-view-id>
 		</navigation-case>
+		<navigation-case>
+			<from-action>#{loginBean.logar}</from-action>
+			<from-outcome>index.fwd</from-outcome>
+			<to-view-id>/index.xhtml</to-view-id>
+		</navigation-case>
+		
 	</navigation-rule>
 <!-- 	
 	<navigation-rule>
@@ -94,7 +100,7 @@
 		<navigation-case>
 			<from-action>#{cadastroUsuarioMB.cadastrar}</from-action>
 			<from-outcome>cadastrar.fwd</from-outcome>
-			<to-view-id>/index2.xhtml</to-view-id>
+			<to-view-id>/index.xhtml</to-view-id>
 		</navigation-case>
 		
 		

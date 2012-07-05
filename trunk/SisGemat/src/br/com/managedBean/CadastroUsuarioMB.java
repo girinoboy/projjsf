@@ -2,7 +2,9 @@ package br.com.managedBean;
 
 import java.util.Date;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.context.FacesContext;
 
 import org.hibernate.Session;
 
@@ -23,6 +25,7 @@ public class CadastroUsuarioMB {
 	}
 
 	public String cadastrar(){
+		FacesMessage message;
 		try{
 
 			Session session = HibernateUtil.getSessionFactory().getCurrentSession();
@@ -38,9 +41,15 @@ public class CadastroUsuarioMB {
 			session.getTransaction().commit();
 
 		}catch(Exception e){
+			message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Erro no sistema",  "Tente mais tarte.");
+			FacesContext.getCurrentInstance().addMessage(null, message);
 			e.printStackTrace();
 			return "erroCadastrar.fwd";
 		}
+		
+		message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Sucesso",  "Cadastro realizado com sucessso.");
+
+		FacesContext.getCurrentInstance().addMessage(null, message);
 
 		return "cadastrar.fwd";
 	}

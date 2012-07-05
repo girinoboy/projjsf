@@ -11,9 +11,10 @@
 <h:head>
 	<title>GEMAT</title>
 	
-	<h:outputScript library="js"     name="jquery.js"  target="head"/>    
-    <h:outputScript library="jquery" name="jquery.maskMoney.js" target="head"/>
-    <h:outputScript library="jquery" name="jquery.meio.mask.js" target="head"/>  
+	<h:outputScript name="locale-primefaces.js" library="javascript" />  
+	<h:outputScript name="jquery.js" 			library="js" 		target="head"/>    
+    <h:outputScript name="jquery.maskMoney.js"  library="jquery" 	target="head"/>
+    <h:outputScript name="jquery.meio.mask.js"  library="jquery" 	target="head"/>  
       
         <link type="text/css" rel="stylesheet" href="dot-luv/skin.css" />  
           
@@ -41,10 +42,11 @@
 </h:head>
 
 <h:body>
-	<ui:include src="/WEB-INF/templates/cabecalho.xhtml" />
+	<ui:include src="/resources/templates/cabecalho.xhtml" />
 
 	<f:view>
 		<h:form>
+			<p:messages id="messages1" showDetail="false" autoUpdate="true"/>
 			<p>
 				<h:outputLabel for="nome">
 					<h:outputText value="Nome: " />
@@ -75,18 +77,37 @@
 				<h:outputLabel for="data">
 					<h:outputText value="Data de Nascimento:" />
 				</h:outputLabel>
-				<p:inputMask id="data2" value="#{cadastroUsuarioMB.usuarioDTO.dataNascimento}" mask="99/99/9999"></p:inputMask>
 				
-				<p:calendar id="data" value="#{cadastroUsuarioMB.usuarioDTO.dataNascimento}" pattern="MM/dd/yyyy" alt="date"> 
-					<f:convertNumber maxFractionDigits="0" groupingUsed="true" pattern="99/99/9999"/>
-				</p:calendar> 
+				<p:calendar id="data" value="#{cadastroUsuarioMB.usuarioDTO.dataNascimento}" pattern="MM/dd/yyyy" alt="date" locale="pt_BR"/> 
 			</p>
 
 				<h:commandButton action="#{cadastroUsuarioMB.cadastrar}" value="Cadastrar" />
+				
 		</h:form>
+		
+		<h:form prependId="false">  
+	                          
+	        <p:growl id="messages" showDetail="true"/>  
+	      
+	        <h:panelGrid columns="1" cellpadding="5">  
+	            <h:outputText id="msg" value="#{buttonBean.text}"/>  
+	              
+	            <p:commandButton id="showDialogButton" value="Destroy the World" onclick="confirmation.show()" type="button"/>  
+	        </h:panelGrid>  
+	          
+	        <p:confirmDialog id="confirmDialog" message="Are you sure about destroying the world?"  
+	                    header="Initiating destroy process" severity="alert" widgetVar="confirmation">  
+	                      
+	            <p:commandButton id="confirm" value="Yes Sure" update="messages" oncomplete="confirmation.hide()"  
+	                        actionListener="#{buttonBean.destroyWorld}" />  
+	            <p:commandButton id="decline" value="Not Yet" onclick="confirmation.hide()" type="button" />   
+	                      
+	        </p:confirmDialog>  
+	      
+	    </h:form>   
 
 	</f:view>
 
-	<ui:include src="/WEB-INF/templates/rodape.xhtml" />
+	<ui:include src="/resources/templates/rodape.xhtml" />
 </h:body>
 </html>

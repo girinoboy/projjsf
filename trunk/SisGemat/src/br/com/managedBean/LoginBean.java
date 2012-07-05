@@ -2,8 +2,10 @@ package br.com.managedBean;
 
 import java.util.List;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
 
 import org.hibernate.Criteria;
 import org.hibernate.Session;
@@ -37,7 +39,7 @@ public class LoginBean {
 	}
 
 	public String logar() {
-		
+		FacesMessage message;
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		try{
 		
@@ -71,7 +73,10 @@ public class LoginBean {
         	UsuarioDTO u = objetos.get(0);
         	System.out.println(u.getLogin());
         }else{
-        	throw new Exception();
+        	message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Login/Senha não encontrado",  "Tente mais tarte.");
+        	FacesContext.getCurrentInstance().addMessage(null, message);
+        	return "index.fwd";
+        	//throw new Exception();
         }
 		}catch(Exception e){
 			e.printStackTrace();

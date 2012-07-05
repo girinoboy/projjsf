@@ -1,44 +1,11 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.org/ui">
-<f:view>
-	<ui:composition template="/WEB-INF/templates/template.xhtml">
-
-		<ui:define name="content">
- 		<h:body>
-			<p:fieldset legend="Meu teste!!!">
-	        	Trocar o tema no web.xml
-	        </p:fieldset>
-			<h:form>
-
-				<h:panelGrid columns="3">
-					<h:outputLabel for="user">
-						<h:outputText value="Usuário: " />
-					</h:outputLabel>
-					<h:inputText id="user" required="true" maxlength="20" value="#{loginBean.usuario}"
-						requiredMessage="O usuário é obrigartório!"
-					/>
-					<h:message for="user" style="color: red" />
-
-					<h:outputLabel for="password">
-						<h:outputText value="Senha: " />
-					</h:outputLabel>
-					<h:inputSecret id="password" required="true" maxlength="20" value="#{loginBean.senha}"
-						requiredMessage="A senha é obrigartório!"
-					/>
-					<h:message for="user" style="color: red" />
-
-					<h:commandButton type="submit" value="Logar" action="#{loginBean.verificaLogin}" />
-					<!-- <h:commandButton value="Ajuda Online" action="ajuda" /> -->
-				</h:panelGrid>
-
-			</h:form>
-		</h:body>
-		</ui:define>
-
-	</ui:composition>
-</f:view>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+      
+<ui:composition template="/resources/templates/template1.xhtml">
+	<ui:define name="content">
+		<ui:include src="login.xhtml" />  
+	</ui:define>
+</ui:composition>
 </html>
