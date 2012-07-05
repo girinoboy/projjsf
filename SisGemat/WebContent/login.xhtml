@@ -3,10 +3,11 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui">
 
-<p:messages id="messages" showDetail="false" autoUpdate="true"/>
+<p:messages id="messagesp" showDetail="false" autoUpdate="true"/>
 <p:message for="user" style="color: red"></p:message>
 <p:message for="password" style="color: red"></p:message>
 <h:messages id="messagesh" showDetail="false" autoUpdate="true"></h:messages>
+<p:growl id="messagesg" showDetail="true"/> 
 
 <p:panelGrid columns="2">
 	<f:facet name="header">  
@@ -18,30 +19,13 @@
 	<p:password id="password" value="#{loginBean.usuarioDTO.senha}" requiredMessage="O campo Senha é obrigartório!" required="true"/>
 
 	<f:facet name="footer">
-		<p:commandButton value="Logar" action="#{loginBean.logar}"
-			icon="ui-icon-check" />
-			<h:commandButton action="#{loginBean.logar}" value="Logar" />
-			<h:commandButton action="#{cadastroUsuarioMB.load}" value="Cadastrar" />
+		<p:commandButton value="Logar" action="#{loginBean.logar}" update="messagesg"
+			icon="ui-icon-check" actionListener="#{loginBean.logar}"/>
+			<f:view>
+				<p:commandButton action="#{cadastroUsuarioMB.load}" value="Cadastrar" />
+			</f:view>
 	</f:facet>
 	
 </p:panelGrid>
-<br/>
-<p:growl id="messagesConfirm" />
-<h:panelGrid columns="1" cellpadding="5">  
-        <h:outputText id="msg" value="#{buttonBean.text}"/>  
-          
-        <p:commandButton id="showDialogButton" value="Destroy the World" onclick="confirmation.show()" type="button"/>  
-    </h:panelGrid> 
-<p:confirmDialog id="confirmDialog" message="Are you sure about destroying the world?"  
-                header="Initiating destroy process" severity="alert" widgetVar="confirmation">  
-                  
-    <p:commandButton id="confirm" value="Yes Sure" update="messagesConfirm" oncomplete="confirmation.hide()"  
-                actionListener="#{buttonBean.destroyWorld}" />  
-    <p:commandButton id="decline" value="Not Yet" onclick="confirmation.hide()" type="button" />   
-              
-</p:confirmDialog> 
-
-
-
 
 </html>
