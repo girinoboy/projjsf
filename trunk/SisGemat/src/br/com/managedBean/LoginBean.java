@@ -88,6 +88,11 @@ public class LoginBean {
 		return "logar";
 	}
 	
+	public String deslogar(){
+		
+		return "index.fwd";
+	}
+	
 	public String getUsuario() {
 		return this.usuario;
 	}
