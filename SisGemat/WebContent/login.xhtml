@@ -21,9 +21,9 @@
 	<f:facet name="footer">
 		<p:commandButton value="Logar" action="#{loginBean.logar}" update="messagesg"
 			icon="ui-icon-check" actionListener="#{loginBean.logar}"/>
-			<f:view>
-				<p:commandButton action="#{cadastroUsuarioMB.load}" value="Cadastrar" />
-			</f:view>
+			
+		<p:commandButton action="#{cadastroUsuarioMB.load}" value="Cadastrar" immediate="true"/>
+
 	</f:facet>
 	
 </p:panelGrid>
