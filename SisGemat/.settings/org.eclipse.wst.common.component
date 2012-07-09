@@ -3,7 +3,6 @@
     <wb-module deploy-name="SisGemat">
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
-        <wb-resource deploy-path="/WEB-INF/classes" source-path="/work"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/WebContent/WEB-INF/src"/>
         <property name="context-root" value="SisGemat"/>
         <property name="java-output-path" value="/SisGemat/WebContent/WEB-INF/classes"/>
