@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:p="http://primefaces.prime.com.tr/ui"
+      xmlns:p="http://primefaces.org/ui"
       xmlns:ui="http://java.sun.com/jsf/facelets">
     <h:head>
         <title>Cliente</title>
@@ -16,14 +16,13 @@
        <p:messages />
          <h:panelGrid columns="2">
             <h:outputLabel value="NOME:" for="nome" />
-            <!--                    veja o value chamando o Bean 
-            depois o objeto cliente e o atributo nome e assim segue os próximos-->
             <p:inputText id="nome" label="nome" value="#{clienteBean.cliente.nome}" maxlength="14" size="40"  />
-            <!--Essa parte vamos fazer em breve para somente adicionar CPF ou CNPJ nunca os dois-->
+           
             <h:outputLabel value="TIPO DE DOCUMENTO:"  for="cpf-cnpj"/>                                 
             <h:selectOneRadio id="cpf-cnpj" label="cpf-cnpj" >
                 <f:selectItem itemLabel="CNPJ" />
-                <f:selectItem itemLabel="CPF" />                     
+                <f:selectItem itemLabel="CPF" />
+                <f:ajax execute="cpf-cnpj" render="cpf"/>  
             </h:selectOneRadio>
 
             <h:outputLabel value="CPF:" for="cpf" />
@@ -91,7 +90,7 @@
         <h:form id="dlg">
             <p:confirmDialog message="Deseja realmente excluir este registro?" hideEffect="explode" header="Aviso" severity="alert" widgetVar="confirmation" modal="true">
                 <!--caso seja sim chamo o metodo excluir, e fecho o modal com o oncomplete, tenho o process que estou dizendo para processar o form, e update para atualizar a tabela-->
-                <p:commandButton id="btnSim" value="Sim" oncomplete="confirmation.hide();" actionListener="#{clienteBean.excluir}" process="@form" update="form:tabela" />
+                <p:commandButton id="btnSim" value="Sim" oncomplete="confirmation.hide();" actionListener="#{clienteBean.excluir}" process="@form" update=":form:tabela" />
                 <!--caso seja não somente fecha o modal-->
                 <p:commandButton id="btnNao" value="Não" onclick="confirmation.hide();" type="button"/>
             </p:confirmDialog>
