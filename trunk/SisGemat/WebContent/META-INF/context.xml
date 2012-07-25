@@ -1,0 +1,9 @@
+<Context>  
+    <Resource name="jdbc/MyDB"   
+              auth="Container"   
+              type="javax.sql.DataSource"   
+              username="system"   
+              password="******"   
+              driverClassName="oracle.jdbc.OracleDriver"   
+              url="jdbc:oracle:thin:@localhost:1521:xe" />  
+    </Context>  
