@@ -1,15 +1,19 @@
 package br.com.cliente.utility;
 
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+
 import br.com.cliente.models.Cliente;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.cfg.AnnotationConfiguration;
 import org.hibernate.cfg.Configuration;
 
 @SuppressWarnings("unchecked")
 public class HibernateUtility {
 
-    private static final SessionFactory factory;
+    private static SessionFactory factory;
     @SuppressWarnings("rawtypes")
 	private static final ThreadLocal sessionThread = new ThreadLocal();
     @SuppressWarnings("rawtypes")
@@ -57,12 +61,13 @@ public class HibernateUtility {
     static {
         try {
             factory = new Configuration()
-//                    /***HSQLDB***/
+//                    //HSQLDB/
                     .setProperty("hibernate.dialect", "org.hibernate.dialect.HSQLDialect") // tipo de dialeto do banco
-                    .setProperty("hibernate.connection.driver_class", "org.hsqldb.jdbcDriver") // driver do banco
-                    .setProperty("hibernate.connection.url", "jdbc:hsqldb:file:./data/cliente;shutdown=true") // endereço do banco de dados
-                    .setProperty("hibernate.connection.username", "sa")
-                    .setProperty("hibernate.connection.password", "")
+                    //.setProperty("hibernate.connection.driver_class", "org.hsqldb.jdbcDriver") // driver do banco
+                   // .setProperty("hibernate.connection.url", "jdbc:hsqldb:file:./data/cliente;shutdown=true") // endereço do banco de dados
+                    //.setProperty("hibernate.connection.username", "sa")
+                    //.setProperty("hibernate.connection.password", "")
+                    .setProperty("hibernate.connection.datasource", "java:DefaultDS")
                     .setProperty("hibernate.hbm2ddl.auto", "update")
                     .setProperty("hibernate.c3p0.max_size", "10")
                     .setProperty("hibernate.c3p0.min_size", "2")
@@ -79,6 +84,10 @@ public class HibernateUtility {
                     .addAnnotatedClass(Cliente.class)
                     //MOVIMENTOS
                     .buildSessionFactory();
+            
+            //factory = new AnnotationConfiguration().configure("hibernate.cfg.xml").buildSessionFactory();  
+                   
+            
         } catch (RuntimeException e) {
             e.printStackTrace();
             throw e;

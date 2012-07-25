@@ -1,0 +1,17 @@
+<server>
+    <mbean code="org.jboss.hibernate.jmx.Hibernate" 
+           name="jboss.adminguide:name=ExampleSessionFactory">
+        <attribute name="DatasourceName">java:/DefaultDS</attribute>
+        <attribute name="Dialect"> 
+            org.hibernate.dialect.HSQLDialect
+        </attribute>
+        <attribute name="SessionFactoryName">
+            java:/hibernate/ExampleSessionFactory
+        </attribute>
+        <attribute name="CacheProviderClass">
+            org.hibernate.cache.HashtableCacheProvider
+        </attribute>
+        <attribute name="Hbm2ddlAuto">create-drop</attribute>
+        <attribute name="ShowSqlEnabled">true</attribute>
+    </mbean>
+</server>

@@ -9,7 +9,8 @@
     <session-factory>
         <property name="hbm2ddl.auto">update</property>
         <property name="dialect">org.hibernate.dialect.HSQLDialect</property>
-        <property name="connection.url">jdbc:hsqldb:file:./data/contratos</property>
+        
+        <property name="connection.datasource">java:DefaultDS</property>
         <property name="connection.username">sa</property>
         <property name="connection.driver_class">org.hsqldb.jdbc.JDBCDriver</property>
         <property name="myeclipse.connection.profile">hsqldb</property>
