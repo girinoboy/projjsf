@@ -22,7 +22,11 @@ import javax.faces.event.ActionEvent;
 @SessionScoped 
 public class ClienteBean implements Serializable {
 
-    private Cliente cliente = new Cliente();
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private Cliente cliente = new Cliente();
     private List<Cliente> clientes = new ArrayList<Cliente>();
     private ClienteDao dao = new ClienteDaoImpl();
 
