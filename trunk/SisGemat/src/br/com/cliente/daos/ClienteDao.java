@@ -7,7 +7,7 @@ import java.util.List;
 //@author M.N.M
 public interface ClienteDao extends DaoGenerico <Cliente, Long> {
 
-    public List consultar();
+    public List<Cliente> consultar();
 }
 
 
